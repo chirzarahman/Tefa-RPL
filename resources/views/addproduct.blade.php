@@ -42,10 +42,17 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Description</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
                 </div>
+
+                <div class="form-group">
+                    <label for="exampleInputLink">Link</label>
+                    <input type="text" class="form-control" id="exampleInputLink" aria-describedby="linkHelp" required name="link">
+                </div>
+
                 <div class="modal-footer">
                     <a href="homepage.html" class="btn btn-secondary">Back</a>
                     <input type="submit" class="btn btn-success" value="Tambah">

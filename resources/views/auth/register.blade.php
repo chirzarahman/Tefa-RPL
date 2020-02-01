@@ -11,14 +11,6 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
-                        {{-- <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">Profile</label>
-
-                            <div class="col-md-6">
-                                <img id="image" class="rounded-circle" alt="No Image" width="100" height="100"/>
-                                <input type="file" onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" name="image">
-                            </div>
-                        </div> --}}
                         <div class="form-group row">
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 

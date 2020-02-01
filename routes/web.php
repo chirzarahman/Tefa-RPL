@@ -10,20 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'OrderController@create');
+Route::post('/order', 'OrderController@store');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/admin', function () {
+    return view('auth.login');
 });
 
 Auth::routes([
-    'register' => false,
+    'register' => false
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::get('/home', 'HomeController@index');
+Route::get('/profile', 'HomeController@profile');
 Route::get('/add-product', 'HomeController@addproduct');
+Route::get('/product', 'ProductController@index');
+Route::get('/detail-order/{order}', 'OrderController@show');
 
-Route::get('/product', 'ProductController@index')->name('product');
 Route::post('/add/product', 'ProductController@store');
 Route::get('/edit/{product}', 'ProductController@edit');
 Route::patch('/edit/product/{product}', 'ProductController@update');
+Route::delete('/trash/{order}','OrderController@destroy');

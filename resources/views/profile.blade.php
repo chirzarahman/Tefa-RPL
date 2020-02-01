@@ -16,7 +16,6 @@
                 </div>
                 <div class="modal-footer">
                     <a href="{{ url('/home') }}" class="btn btn-secondary">Back</a>
-                    <input type="submit" class="btn btn-success" value="Tambah">
                 </div>
             </form>
         </div>

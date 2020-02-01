@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,14 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product', compact('products'));
+        $model = \Auth::user()->role;
+        if($model == '1'){
+            return view('super.product', compact('products'));
+        }else if ($model == '2') {
+            return view('admin.product2', compact('products'));
+        }else {
+            abort(404);
+        }
     }
 
     /**
@@ -41,11 +52,12 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'platform' => 'required|string|max:255',
             'description' => 'required|string',
-            'icon' => 'sometimes|image|mimes:jpg,jpeg,svg,png|max:90000',
-            'image' => 'sometimes|image|mimes:jpg,jpeg,svg,png|max:90000',
+            'link' => 'required|string',
+            'icon' => 'required|sometimes|image|mimes:jpg,jpeg,svg,png|max:50000',
+            'image' => 'required|sometimes|image|mimes:jpg,jpeg,svg,png|max:50000',
         ]);
         
-        $icon = $request->file('icon');
+        $icon = $request->file('icon');   
         $image = $request->file('image');
         $nameIcon = uniqid().'.'.$icon->getClientOriginalExtension();
         $nameImage = uniqid().'.'.$image->getClientOriginalExtension();
@@ -56,6 +68,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'platform' => $request->platform,
             'description' => $request->description,
+            'link' => $request->link,
             'icon' => '/img/product/'.$nameIcon,
             'image' => '/img/product/'.$nameImage,
         ]);
@@ -101,15 +114,25 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->platform = $request->platform;
         $product->description = $request->description;
-        if($request->hasFile('image1')) {
-            File::delete(public_path($product->image1));
-            $image = $request->file('image1');
-            $filename = $image->getClientOriginalName();
-            $filename = time().'.'.$image->getClientOriginalExtension();
-            $path = public_path('/img/product/');
-            $image->move($path, $filename);
-            $product->image1 = '/img/product/'.$filename;
+        $product->link = $request->link;
+
+        $path = public_path('/img/product/');
+        if ($request->file('icon')) {
+            File::delete(public_path($product->icon));
+            $icon = $request->file('icon');   
+            $nameIcon = uniqid().'.'.$icon->getClientOriginalExtension();
+            $icon->move($path, $nameIcon);
+            $product->icon = '/img/product/'.$nameIcon;
         }
+        
+        if ($request->file('image')) {
+            File::delete(public_path($product->image));
+            $image = $request->file('image');
+            $nameImage = uniqid().'.'.$image->getClientOriginalExtension() ;
+            $image->move($path, $nameImage);
+            $product->image = '/img/product/'.$nameImage;
+        }
+        
         $product->update();
         return redirect ('/product');
     }

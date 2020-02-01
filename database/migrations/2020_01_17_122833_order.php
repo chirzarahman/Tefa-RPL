@@ -19,13 +19,13 @@ class Order extends Migration
             $table->string('email');
             $table->string('notelp');
             $table->string('alamat');
-            $table->string('name product');
+            $table->string('name_product');
             $table->string('platform');
             $table->string('description');
             $table->string('status')->nullable();
             $table->string('pending')->nullable();
             $table->string('verifed')->nullable();
-            $table->string('trash')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

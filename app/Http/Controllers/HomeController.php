@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Modeluser;
+use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,15 +17,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
-        // $this->middleware(function($request,  $next){
-        //     $model = new \App\Modeluser;
-        //     if($model->role == 1){
-        //         return $next($request);
-        //     }else{
-        //         abort(403);
-        //     }
-        // });
     }
 
     /**
@@ -33,11 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $orders = Order::all();
         $model = \Auth::user()->role;
         if ($model == '1') {
-            return view('home1');
+            return view('super.home', compact('orders'));
         }else if($model == '2'){
-            return view('home2');
+            return view('admin.home2', compact('orders'));
         }else {
             abort(403);
         }
@@ -48,16 +42,13 @@ class HomeController extends Controller
         $model = \Auth::user()->role;
         if($model == '1'){
             return view('addproduct');
-        }else {
+        }else if($model == '2'){
             abort(404);
         }
     }
+    
     public function profile()
     {
         return view('profile');
-    }
-    public function product()
-    {
-        return view('product');
     }
 }

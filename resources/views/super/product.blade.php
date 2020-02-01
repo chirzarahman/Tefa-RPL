@@ -8,7 +8,7 @@
     <div class="card m-3" style="max-width: 450px;">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="{{ $product->icon }}" class="card-img" width="400px">
+                <img src="{{ asset($product->icon) }}" class="card-img" width="400px">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -16,6 +16,7 @@
                     <p class="card-text">{{ $product->description }}</p>
                     <p class="card-text"><small class="text-muted">{{ $product->updated_at }}</small></p>
                     <a href="/edit/{{ $product->id }}" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
                 </div>
             </div>
         </div>

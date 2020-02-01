@@ -18,9 +18,9 @@ class Product extends Migration
             $table->string('name');
             $table->string('platform');
             $table->string('description');
+            $table->string('link');
             $table->string('icon');
             $table->string('image')->nullable();
-            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
