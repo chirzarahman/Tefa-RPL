@@ -31,3 +31,4 @@ Route::post('/add/product', 'ProductController@store');
 Route::get('/edit/{product}', 'ProductController@edit');
 Route::patch('/edit/product/{product}', 'ProductController@update');
 Route::delete('/trash/{order}','OrderController@destroy');
+Route::delete('/delete/{product}','ProductController@destroy');

@@ -1,5 +1,7 @@
   @extends('layouts.main')
 
+  @section('title', 'Tefa RPL RUS')
+
   @section('content')
 
   <!-- intro area -->

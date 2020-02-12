@@ -17,7 +17,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-default" role="navigation">
         <div class="nav-item dropdown no-arrow">
             <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
@@ -42,7 +42,16 @@
                 </form>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle nav</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navigation collapse navbar-collapse navbar-ex1-collapse">
             <div class="navbar-nav mr-auto"></div>
             <form class="form-inline my-2 my-lg-0">
                 <a class="nav-link text-body" href="{{ url('/add-product') }}"><i class="fa fa-plus"></i> Tambah

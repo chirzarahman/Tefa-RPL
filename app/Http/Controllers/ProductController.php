@@ -145,6 +145,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::destroy($product->id);
+        return redirect('/product');
     }
 }

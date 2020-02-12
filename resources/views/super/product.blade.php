@@ -16,7 +16,11 @@
                     <p class="card-text">{{ $product->description }}</p>
                     <p class="card-text"><small class="text-muted">{{ $product->updated_at }}</small></p>
                     <a href="/edit/{{ $product->id }}" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                    <form action="/delete/{{ $product->id }}" method="post" class="d-inline">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

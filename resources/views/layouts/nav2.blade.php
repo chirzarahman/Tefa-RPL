@@ -19,6 +19,13 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="nav-item dropdown no-arrow">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle nav</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
             <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <img class="img-fluid rounded-circle" width="40px" src="{{ asset('img/default.png') }}">
@@ -42,7 +49,7 @@
                 </form>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarSupportedContent">
             <div class="navbar-nav mr-auto"></div>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
